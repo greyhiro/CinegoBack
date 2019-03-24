@@ -14,7 +14,7 @@ import fr.cesi.ril18.CineGoBack.entities.Film;
 import fr.cesi.ril18.CineGoBack.repositories.FilmRepository;
 
 @RestController
-@RequestMapping("Film/")
+@RequestMapping("Film")
 public class FilmController {
 	
 	@Autowired

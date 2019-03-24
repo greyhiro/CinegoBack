@@ -6,4 +6,7 @@ import fr.cesi.ril18.CineGoBack.entities.Cinema;
 
 public interface CinemaRepository extends CrudRepository<Cinema, Long> {
 
+
+	
+	
 }

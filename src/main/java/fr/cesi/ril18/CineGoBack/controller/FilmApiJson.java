@@ -62,10 +62,10 @@ public class FilmApiJson {
 	public void MyGETRequest() throws IOException, ParseException {
 	
 		int page = 1;
-		pageTotalInt = 4;
+		pageTotalInt = 2;
 		
 		while (pageTotalInt >= page) {
-	    URL url = new URL("https://api.themoviedb.org/3/discover/movie?primary_release_date.gte=2019-01-01&primary_release_date.lte=2019-12-31&api_key=dd3ce9a7b49c2eac73fc965b61d7baf6&language=fr&page="+page+"");
+	    URL url = new URL("https://api.themoviedb.org/3/discover/movie?primary_release_date.gte=2019-04-01&primary_release_date.lte=2019-05-01&api_key=dd3ce9a7b49c2eac73fc965b61d7baf6&language=fr&page="+page+"");
 	    HttpURLConnection conn = (HttpURLConnection)url.openConnection();
 	    
 	    conn.setRequestMethod("GET"); 
@@ -108,7 +108,7 @@ public class FilmApiJson {
 	    //while(pageCourante != pageMax) {
 	    	
 	    
-	   for(int i=0;i<=jsonarr_1.size();i++)
+	   for(int i=0;i<jsonarr_1.size();i++)
 	    {
 	    //Store the JSON objects in an array
 	    //Get the index of the JSON object and print the values as per the index
