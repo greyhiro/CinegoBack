@@ -1,4 +1,4 @@
-package fr.cesi.ril18.CineGoBack.controller;
+package fr.cesi.ril18.CineGoBack.services;
 
 
 
@@ -25,7 +25,7 @@ import fr.cesi.ril18.CineGoBack.repositories.FilmRepository;
 
 @Component
 public class FilmApiJson {
-
+/*
 	
  	
 	private Scanner sc;
@@ -34,11 +34,7 @@ public class FilmApiJson {
 
 	private String dateRealisation;
 
-	
-
 	private String afficheFilm;
-
-
 
 	private String Description;
 
@@ -49,7 +45,6 @@ public class FilmApiJson {
 	private String video;
 	@Autowired
 	FilmRepository filmRepo;
-	
 	
 
 	private int idFilm;
@@ -165,7 +160,7 @@ public class FilmApiJson {
 		
 		 sc.close();
 	}
-	
+	*/
 
 	
 }

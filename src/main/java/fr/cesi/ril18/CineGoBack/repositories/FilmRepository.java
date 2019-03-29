@@ -14,6 +14,8 @@ public interface FilmRepository extends CrudRepository<Film, Integer> {
 
 	List<Film> findAll();
 
+	Film findByIdFilm(Integer Id);
+	
 	}
 
 

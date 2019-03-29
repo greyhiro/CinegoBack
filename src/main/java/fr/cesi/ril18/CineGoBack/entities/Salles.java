@@ -25,15 +25,54 @@ public class Salles {
 	private int nbplaces;
 	@Column
 	private int nbPlaceHandicap;
-	@Column
+	@Column(length = 15000)
 	private String FichierXMLplace;
 	
 	@ManyToOne
 	@JoinColumn (name="fk_Cinema")
 	private Cinema idCinema;
 	
-	
 
+public String CreateFichierXML(int nbplace, int nbplaceHandicapet) {
+		
+		
+		
+		String Json = "{ \"places\" : { \"placeNormal\":[";
+		
+		for (int i=0; i<=nbplace; i++)
+		{
+			Json += "{  \"prise\":  \"false\",";
+			Json += "\"id\"" +":"+ i;
+			if(nbplace>i) {
+				Json += "},";
+			}
+				else {
+					Json +="}";
+				}
+			}
+		
+		
+		Json +="],  \"PlaceHandicapet: \":[";
+		
+		for (int i=0; i<=nbplace; i++)
+		{
+			Json += "{  \"prise\":  \"false\",";
+			Json += "\"id\"" +":"+ i;
+			if(nbplace>i) {
+				Json += "},";
+			}
+				else {
+					Json +="}";
+				}
+			}
+		
+		Json += "]}}";
+		System.out.println(Json);
+		
+		
+		return Json;
+		
+	}
 	
 	
 }
