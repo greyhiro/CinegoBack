@@ -25,7 +25,7 @@ import fr.cesi.ril18.CineGoBack.repositories.FilmRepository;
 
 @Component
 public class FilmApiJson {
-/*
+
 	
  	
 	private Scanner sc;
@@ -160,7 +160,7 @@ public class FilmApiJson {
 		
 		 sc.close();
 	}
-	*/
+	
 
 	
 }

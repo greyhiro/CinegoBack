@@ -24,8 +24,7 @@ public class Groupes {
 	private int idGroupe;
 	@Column
 	private String nomGroupe;
-	@Column
-	private String adrGroupe;
+	
 	
 	@ManyToOne
 	@JoinColumn(name ="Fk_fidelite")

@@ -18,7 +18,7 @@ public class Reservation {
 	
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
-	private int idReservation;
+	private Integer idReservation;
 	@Column
 	private float prixReservation;
 	

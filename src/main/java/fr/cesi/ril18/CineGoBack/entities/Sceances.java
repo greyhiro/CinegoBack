@@ -23,7 +23,7 @@ public class Sceances {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column
-	private int idSecance;
+	private Integer idSceance;
 	
 	@Column
 	private Date dateEtHeureSceance;
@@ -32,7 +32,5 @@ public class Sceances {
 	@JoinColumn(name = "Fk_Film")
 	private Film film;
 	
-	
-	
-	
+
 }

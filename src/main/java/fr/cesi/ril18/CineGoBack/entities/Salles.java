@@ -54,7 +54,7 @@ public String CreateFichierXML(int nbplace, int nbplaceHandicapet) {
 		
 		Json +="],  \"PlaceHandicapet: \":[";
 		
-		for (int i=0; i<=nbplace; i++)
+		for (int i=0; i<=nbplaceHandicapet; i++)
 		{
 			Json += "{  \"prise\":  \"false\",";
 			Json += "\"id\"" +":"+ i;

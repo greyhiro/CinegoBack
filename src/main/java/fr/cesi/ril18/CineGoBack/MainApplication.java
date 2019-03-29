@@ -1,7 +1,5 @@
 package fr.cesi.ril18.CineGoBack;
 
-import static org.assertj.core.api.Assertions.assertThatIllegalStateException;
-
 import java.io.IOException;
 import java.util.List;
 import java.util.Optional;

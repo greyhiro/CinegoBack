@@ -20,9 +20,11 @@ public class Cinema {
 	
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
-	private int idCinema;
+	private Integer idCinema;
 	@Column
 	private String nomCinema;
+	@Column
+	private String adresseCinema;
 	@Column
 	private float prixEtudiant;
 	@Column
