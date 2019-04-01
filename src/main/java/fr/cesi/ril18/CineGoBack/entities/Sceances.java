@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import org.joda.time.DateTime;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -26,7 +28,7 @@ public class Sceances {
 	private Integer idSceance;
 	
 	@Column
-	private Date dateEtHeureSceance;
+	private String dateEtHeureSceance;
 	
 	@ManyToOne
 	@JoinColumn(name = "Fk_Film")

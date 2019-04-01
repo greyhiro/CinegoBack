@@ -96,6 +96,8 @@ public class SalleController {
 		
 		 return ResponseEntity.ok(this.salleRepo.findAll());
 	}
+	
+	
 
 
 }
