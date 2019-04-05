@@ -1,6 +1,7 @@
 package fr.cesi.ril18.CineGoBack.controller;
 
 import java.util.List;
+
 import java.util.Optional;
 
 import javax.persistence.EntityManager;
@@ -9,6 +10,7 @@ import javax.persistence.EntityManagerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.jdbc.object.SqlCall;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 import fr.cesi.ril18.CineGoBack.entities.Sceances;
 import fr.cesi.ril18.CineGoBack.repositories.SceanceRepository;
 
+@CrossOrigin
 @RestController
 @RequestMapping("Sceance")
 public class SceanceController {
@@ -53,6 +56,7 @@ public class SceanceController {
 			return ResponseEntity.ok(this.sceanceRepo.findAll());	
 
 	}
+	
 	
 	
 	@PutMapping("Modif/{id}")

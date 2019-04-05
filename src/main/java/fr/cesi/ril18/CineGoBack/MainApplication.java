@@ -32,8 +32,7 @@ public class MainApplication {
 		
 		// TODO Auto-generated method stub
 	
-		//FilmApiJson filmGenerator = new FilmApiJson();
-		//filmGenerator.MyGETRequest();
+		
 		
 		
 		

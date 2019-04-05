@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import fr.cesi.ril18.CineGoBack.entities.Film;
 import fr.cesi.ril18.CineGoBack.repositories.FilmRepository;
 
+@CrossOrigin
 @RestController
 @RequestMapping("Film")
 public class FilmController {
@@ -22,7 +24,16 @@ public class FilmController {
 	@Autowired
 	FilmRepository repoFilm;
 	
-	@PostMapping("/CreateFilm")
+	
+	@GetMapping("/{id}")
+	public Film GetFilmsById(@PathVariable Integer id) {
+		
+		return repoFilm.findByIdFilm(id);
+	}
+	
+	
+	
+	@PostMapping("/Create")
 	public ResponseEntity<?> ajouterFilm(@RequestBody Film film) {
 
 		
@@ -61,14 +72,13 @@ public class FilmController {
 	 
 	
 	 @PostMapping("/Delete/{id}")
-	 public ResponseEntity<?>  deleteFilm(@RequestBody Film film ,@PathVariable Integer id){
+	 public ResponseEntity<?>  deleteFilm(@PathVariable Integer id){
 		 
-			Optional<Film> filmOptionnal = repoFilm.findById(id);
+			Film film = repoFilm.findByIdFilm(id);
 
-			if (!filmOptionnal.isPresent())
-				return ResponseEntity.status(400).body("Ce film n'existe pas en base");
+		
 
-			film.setIdFilm(id);
+		
 			
 			repoFilm.delete(film);
 
