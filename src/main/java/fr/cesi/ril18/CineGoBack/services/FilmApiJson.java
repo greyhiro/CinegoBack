@@ -5,8 +5,15 @@ package fr.cesi.ril18.CineGoBack.services;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.Month;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Scanner;
+
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -50,7 +57,6 @@ public class FilmApiJson {
 
 
 
-
 	@EventListener(ContextRefreshedEvent.class)
 	@Transactional
 	public void MyGETRequest() throws IOException, ParseException {
@@ -58,8 +64,22 @@ public class FilmApiJson {
 		int page = 1;
 		pageTotalInt = 2;
 		
+		//date aujoudrhui
+		LocalDate aujourdhuiDate = LocalDate.now();
+		
+		
+		
+		
+		//date dans un mois
+		LocalDate futureDate = LocalDate.now().plusMonths(1);
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("YYYY-MM-dd");
+		String dateDansUnMois = futureDate.format(formatter);
+		String dateAujourdhui = aujourdhuiDate.format(formatter);
+		
+		//Calendar DansUnMois = aujourdhui.add(Calendar.MONTH, 1); 		
+	
 		while (pageTotalInt >= page) {
-	    URL url = new URL("https://api.themoviedb.org/3/discover/movie?primary_release_date.gte=2019-04-01&primary_release_date.lte=2019-05-01&api_key=dd3ce9a7b49c2eac73fc965b61d7baf6&language=fr&page="+page+"");
+	    URL url = new URL("https://api.themoviedb.org/3/discover/movie?primary_release_date.gte="+ dateAujourdhui + "&primary_release_date.lte="+dateDansUnMois+"&api_key=dd3ce9a7b49c2eac73fc965b61d7baf6&language=fr&page="+page+"");
 	    HttpURLConnection conn = (HttpURLConnection)url.openConnection();
 	    
 	    conn.setRequestMethod("GET"); 

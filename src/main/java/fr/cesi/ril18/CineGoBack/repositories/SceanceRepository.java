@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
-
+import fr.cesi.ril18.CineGoBack.entities.Film;
 import fr.cesi.ril18.CineGoBack.entities.Sceances;
 
 public interface SceanceRepository extends CrudRepository<Sceances, Integer>{
@@ -22,4 +22,9 @@ public interface SceanceRepository extends CrudRepository<Sceances, Integer>{
     )
     Iterable<Integer> findAllBySessionDate(Integer idFilm);
 	
+	List<Sceances> findByFilm(Film film);
+	
+	
 }
+
+

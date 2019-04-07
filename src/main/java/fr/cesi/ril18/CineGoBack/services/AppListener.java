@@ -107,14 +107,15 @@ public class AppListener {
 		Cinemarepo.save(cinema1);
 		
 		Salles salle1= new Salles();
-		salle1.setIdCinema(cinema1);
+		
 		salle1.setNbPlaceHandicap(20);
 		salle1.setNbplaces(50);
+		salle1.setNomSalle("fire");
 		salle1.setFichierXMLplace(salle1.CreateFichierXML(salle1.getNbplaces(), salle1.getNbPlaceHandicap()));
 		
 	
 		Salles salle2= new Salles();
-		salle2.setIdCinema(cinema1);
+		salle2.setNomSalle("aqua");
 		salle2.setNbplaces(50);
 		salle2.setNbPlaceHandicap(20);
 		salle2.setFichierXMLplace(salle2.CreateFichierXML(salle2.getNbplaces(), salle2.getNbPlaceHandicap()));
@@ -139,7 +140,7 @@ public class AppListener {
 		repoFilm.save(film);
 		sceanceRepo.save(sceance1);
 		
-		
+		SallesRepo.save(salle1);
 		SallesRepo.save(salle2);
 	}
 	

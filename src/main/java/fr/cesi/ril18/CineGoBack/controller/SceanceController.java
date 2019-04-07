@@ -18,7 +18,10 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import fr.cesi.ril18.CineGoBack.entities.Film;
 import fr.cesi.ril18.CineGoBack.entities.Sceances;
+import fr.cesi.ril18.CineGoBack.repositories.FilmRepository;
 import fr.cesi.ril18.CineGoBack.repositories.SceanceRepository;
 
 @CrossOrigin
@@ -29,8 +32,9 @@ public class SceanceController {
 	@Autowired 
 	SceanceRepository sceanceRepo;
 	
-	 @Autowired
-	 private EntityManagerFactory entityManagerFactory;
+	@Autowired
+	FilmRepository filmRepo;
+
 	 
 	@GetMapping
 	public List<Sceances> getSceance(){
@@ -45,12 +49,6 @@ public class SceanceController {
 	public ResponseEntity<?> ajouterSceance(@RequestBody Sceances sceance) {
 
 		
-		
-		Sceances id = sceanceRepo.findByIdSceance(sceance.getIdSceance());
-				
-				if(id != null) {
-					return ResponseEntity.ok("deja present en BDD");
-				}
 
 			sceanceRepo.save(sceance);
 			return ResponseEntity.ok(this.sceanceRepo.findAll());	
@@ -106,22 +104,19 @@ public class SceanceController {
 		
 		 return ResponseEntity.ok(this.sceanceRepo.findAll());
 	}
-	@GetMapping("/Film/{idSceance}")
-	public ResponseEntity<?> getSceanceAvecSonFilm(@PathVariable Integer idSceance)
+
+	@GetMapping("/{idFilm}")
+	public ResponseEntity<?> getSceanceAvecSonFilm(@PathVariable Integer idFilm)
 	
 	{
 	
-		Sceances sceance = sceanceRepo.findByIdSceance(idSceance);
+		Film film = filmRepo.findByIdFilm(idFilm);
 		
-		if(sceance!=null) {
-			
-		Integer idFilm =sceance.getFilm().getIdFilm();
-		return ResponseEntity.ok(this.sceanceRepo.findByIdSceance(idFilm));
-			
-		}
 		
-		 
-		return ResponseEntity.status(400).body("l'id de la sceance n'existe pas");
+			
+			return ResponseEntity.ok(this.sceanceRepo.findByFilm(film));
+		
+		
 	}
 
 }

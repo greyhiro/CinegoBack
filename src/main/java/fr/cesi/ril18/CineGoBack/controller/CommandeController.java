@@ -39,12 +39,6 @@ CommandeRepository commandeRepo;
 	public ResponseEntity<?> ajouterCinema(@RequestBody Commande commande) {
 
 		
-		
-		Commande id = commandeRepo.findByIdCommande(commande.getIdCommande());
-				
-				if(id != null) {
-					return ResponseEntity.ok("deja present en BDD");
-				}
 
 			commandeRepo.save(commande);
 			return ResponseEntity.ok(this.commandeRepo.findAll());	

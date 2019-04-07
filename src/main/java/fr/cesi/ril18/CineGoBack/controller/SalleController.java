@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import fr.cesi.ril18.CineGoBack.entities.Film;
 import fr.cesi.ril18.CineGoBack.entities.Salles;
+import fr.cesi.ril18.CineGoBack.entities.Sceances;
 import fr.cesi.ril18.CineGoBack.repositories.SallesRepository;
 
 @CrossOrigin
@@ -32,9 +34,27 @@ public class SalleController {
 		
 	}
 	
+	@PostMapping("/Create/{nbPlace}/{nbPlaceHandicapet}/{nomSalle}")
+	public ResponseEntity<?> ajouterSalleAPartirDesPlaces(@PathVariable Integer nbPlace, @PathVariable Integer nbPlaceHandicapet, @PathVariable String nomSalle){
 
+		
+		
+		Salles salle = new Salles();
+		String XML = salle.CreateFichierXML(nbPlace, nbPlaceHandicapet);
+		salle.setNbplaces(nbPlace);
+		salle.setNbPlaceHandicap(nbPlaceHandicapet);
+		salle.setFichierXMLplace(XML);
+		salle.setNomSalle(nomSalle);
+		salleRepo.save(salle);
+		return ResponseEntity.ok(this.salleRepo.findAll());	
+		
+		
+	}
+	
+	
+	
 	@PostMapping("/Create")
-	public ResponseEntity<?> ajouterSceance(@RequestBody Salles salle) {
+	public ResponseEntity<?> ajouterSalle(@RequestBody Salles salle) {
 
 		
 		

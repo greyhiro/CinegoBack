@@ -24,13 +24,12 @@ public class Commande {
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	private int idCommande;
-	@Column
-	private Date dateEtHeureCommande;
-	@Column 
-	private String nomCommande;
-	@ManyToOne 
-	@JoinColumn(name= "fk_reservation")
-	private Reservation idReservation;
+	@ManyToOne
+	@JoinColumn(name= "FK_Sceance")
+	private Sceances sceance;
+	
+
+
 	
 	
 }

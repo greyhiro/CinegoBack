@@ -20,20 +20,19 @@ public class Salles {
 
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
-	private int idSalles;
+	private Integer idSalles;
 	@Column
-	private int nbplaces;
+	private String nomSalle;
 	@Column
-	private int nbPlaceHandicap;
+	private Integer nbplaces;
+	@Column
+	private Integer nbPlaceHandicap;
 	@Column(length = 15000)
 	private String FichierXMLplace;
-	
-	@ManyToOne
-	@JoinColumn (name="fk_Cinema")
-	private Cinema idCinema;
+
 	
 
-public String CreateFichierXML(int nbplace, int nbplaceHandicapet) {
+public String CreateFichierXML(Integer nbplace, Integer nbplaceHandicapet) {
 		
 		
 		
