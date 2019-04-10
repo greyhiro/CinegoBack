@@ -39,9 +39,15 @@ public class SceanceController {
 	@GetMapping
 	public List<Sceances> getSceance(){
 
-		return sceanceRepo.findAll();
+		return this.sceanceRepo.findAll();
 
 		
+	}
+	
+	@GetMapping("Reserver/{id}")
+	public Sceances getSceanceById(@PathVariable Integer id){
+		
+		return this.sceanceRepo.findByIdSceance(id);
 	}
 	
 

@@ -1,5 +1,9 @@
 package fr.cesi.ril18.CineGoBack.controller;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,7 +18,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import ch.qos.logback.core.net.SyslogOutputStream;
+import ch.qos.logback.core.util.Duration;
 import fr.cesi.ril18.CineGoBack.entities.Commande;
+import fr.cesi.ril18.CineGoBack.entities.Film;
+import fr.cesi.ril18.CineGoBack.entities.Sceances;
 import fr.cesi.ril18.CineGoBack.repositories.CommandeRepository;
 
 
@@ -36,9 +44,11 @@ CommandeRepository commandeRepo;
 	
 
 	@PostMapping("/Create")
-	public ResponseEntity<?> ajouterCinema(@RequestBody Commande commande) {
+	public ResponseEntity<?> jouterCommande(@RequestBody Sceances sceance) {
 
 		
+			Commande commande = new Commande();
+			commande.setSceance(sceance);
 
 			commandeRepo.save(commande);
 			return ResponseEntity.ok(this.commandeRepo.findAll());	
@@ -47,7 +57,7 @@ CommandeRepository commandeRepo;
 	
 	
 	@PutMapping("Modif/{id}")
-	public ResponseEntity<?> updateCinema(@RequestBody Commande commande , @PathVariable Integer id){
+	public ResponseEntity<?> updateCommande(@RequestBody Commande commande , @PathVariable Integer id){
 		
 		Optional <Commande> commandeOptionnal = commandeRepo.findById(id);
 		
@@ -63,25 +73,39 @@ CommandeRepository commandeRepo;
 	
 	
 	@PostMapping("/Delete/{id}")
-	public ResponseEntity<?> deleteCinema(@RequestBody Commande commande, @PathVariable Integer id){
+	public ResponseEntity<?> deleteCommande(@PathVariable Integer id){
 		
-		Optional<Commande> commandeOptionnal = commandeRepo.findById(id);
+		LocalDateTime aujourdui = LocalDateTime.now();
 		
-		if(!commandeOptionnal.isPresent()) {
-			
-			return ResponseEntity.status(400).body("Cette Scéance n'existe pas en base");
-		}
+		
+		
+		Commande commande = commandeRepo.findByIdCommande(id);
+
+		Sceances sceanceCommande = commande.getSceance();
+		String dateSceance = sceanceCommande.getDateEtHeureSceance();
+		
+		LocalDateTime dateSceanceDateTime = LocalDateTime.parse(dateSceance);
+		
+		long hours = ChronoUnit.HOURS.between(aujourdui, dateSceanceDateTime);
+		
+		System.out.println("sceance time : "+ dateSceanceDateTime);
+		System.out.println("ajourdhui" + aujourdui);
+		
+		if(hours<24) {
 		
 		
 		commandeRepo.delete(commande);
-		
+
 		return ResponseEntity.ok(this.commandeRepo.findAll());
+		
+		}
+		return ResponseEntity.status(400).body("pas possible de supprimer une commande de scéances si moins de 24 avant la Scéances");
 		
 	}
 	
 	
 	@PostMapping("/delete")
-	public ResponseEntity<?> deleteSceance(@RequestBody Commande commande){
+	public ResponseEntity<?> deleteCommande(@RequestBody Commande commande){
 		
 		Commande id = commandeRepo.findByIdCommande(commande.getIdCommande());
 		

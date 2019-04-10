@@ -12,7 +12,7 @@ public interface SceanceRepository extends CrudRepository<Sceances, Integer>{
 
 	
 	List<Sceances> findAll();
-	Sceances findByIdSceance(int idSceance);
+	Sceances findByIdSceance(Integer idSceance);
 	
 	
 	

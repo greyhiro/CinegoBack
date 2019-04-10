@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import fr.cesi.ril18.CineGoBack.entities.Film;
+
 import fr.cesi.ril18.CineGoBack.entities.Salles;
-import fr.cesi.ril18.CineGoBack.entities.Sceances;
+
 import fr.cesi.ril18.CineGoBack.repositories.SallesRepository;
 
 @CrossOrigin
@@ -29,10 +29,24 @@ public class SalleController {
 	@GetMapping
 	public List<Salles> getSalle(){
 
-		return salleRepo.findAll();
+		return this.salleRepo.findAll();
 
 		
 	}
+	
+
+	
+	@GetMapping("/{id}")
+	public Salles getSalleById(@PathVariable Integer id){
+		
+		
+	
+
+		return this.salleRepo.findByIdSalles(id);
+
+		
+	}
+	
 	
 	@PostMapping("/Create/{nbPlace}/{nbPlaceHandicapet}/{nomSalle}")
 	public ResponseEntity<?> ajouterSalleAPartirDesPlaces(@PathVariable Integer nbPlace, @PathVariable Integer nbPlaceHandicapet, @PathVariable String nomSalle){

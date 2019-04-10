@@ -36,7 +36,7 @@ public String CreateFichierXML(Integer nbplace, Integer nbplaceHandicapet) {
 		
 		
 		
-		String Json = "{ \"places\" : { \"placeNormal\":[";
+		String Json = "{ \"placeNormal\":[";
 		
 		for (int i=0; i<=nbplace; i++)
 		{
